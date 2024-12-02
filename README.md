@@ -1,7 +1,6 @@
 
 
-![awesome css](https://s2.loli.net/2024/12/02/JQD2TaxRN7BFIzv.png)
-
+<p align="center" id="top"><a href="https://github.com/neptoo/awesome-css"><img src="https://s2.loli.net/2024/12/02/JQD2TaxRN7BFIzv.png" /></a></p>
 <p align="center"><i>A playground for css tricks</i> 🤖</p>
 
 ## Demos
