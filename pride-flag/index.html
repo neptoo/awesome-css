@@ -1,0 +1,75 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pride Flag</title>
+    <style>
+      :root {
+        --delay: 100ms;
+        /*  使用正延时 在第一帧 就会出现第一列开始波动 后面几列都没有开始动的情况  */
+        /*  所以应该使用负延时控制每一列的动画  */
+      }
+
+      .container {
+        width: 200px;
+        margin: 20px auto;
+        display: flex;
+        /*  纵横比--可以理解为长宽比  */
+        aspect-ratio: 3 / 2;
+      }
+      .flag {
+        flex: 1;
+        background: linear-gradient(
+          to bottom,
+          hsl(0, 0%, 0%) 0% 25%,
+          hsl(0, 0%, 63.92%) 25% 50%,
+          hsl(0, 0%, 100%) 50% 75%,
+          hsl(300, 100%, 25.1%) 75% 100%
+        );
+        animation: oscillate 500ms infinite;
+        animation-direction: alternate;
+        animation-timing-function: ease-in-out;
+        animation-fill-mode: backwards;
+      }
+
+      .flag:first-child {
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
+      }
+      .flag:last-child {
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+      }
+
+      @keyframes oscillate {
+        from {
+          transform: translateY(8px);
+        }
+        to {
+          transform: translateY(-8px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container" id="mycontainer">
+      <div class="flag" style="animation-delay: calc(var(--delay) * -5)"></div>
+      <div class="flag" style="animation-delay: calc(var(--delay) * -4)"></div>
+      <div class="flag" style="animation-delay: calc(var(--delay) * -3)"></div>
+      <div class="flag" style="animation-delay: calc(var(--delay) * -2)"></div>
+      <div class="flag" style="animation-delay: calc(var(--delay) * -1)"></div>
+      <div class="flag" style="animation-delay: 0ms"></div>
+    </div>
+    <script>
+      // 理想宽度是200px
+      // 但是在某些浏览器上 每列之间会有一些像素问题
+      // 最好设置整数型像素宽度 而不是小数
+      const desiredWidth = 200;
+      const columnNums = 6;
+      const friendlyWidth = Math.round(desiredWidth / columnNums) * columnNums;
+      const elem = document.getElementById("mycontainer");
+      elem.style.width = friendlyWidth + "px";
+      // console.log(elem)
+    </script>
+  </body>
+</html>
